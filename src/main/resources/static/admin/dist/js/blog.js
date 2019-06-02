@@ -101,6 +101,7 @@ function editBlog() {
     window.location.href = "/admin/blogs/edit/" + id;
 }
 
+/*
 function deleteBlog() {
     var ids = getSelectedRows();
     if (ids == null) {
@@ -135,4 +136,4 @@ function deleteBlog() {
             }
         }
     );
-}
+}*/

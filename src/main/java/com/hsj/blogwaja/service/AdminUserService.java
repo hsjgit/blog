@@ -2,6 +2,10 @@ package com.hsj.blogwaja.service;
 
 import com.hsj.blogwaja.entity.AdminUser;
 
+/**
+ * 管理员登录的辅助查询
+ * @author waja
+ */
 public interface AdminUserService {
 
     AdminUser login(String userName, String password);

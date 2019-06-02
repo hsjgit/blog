@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
+/**
+ * @author waja
+ */
 @Component
 public class KaptchaConfig {
     @Bean

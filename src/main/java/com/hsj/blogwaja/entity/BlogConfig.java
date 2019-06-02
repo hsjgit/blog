@@ -2,6 +2,9 @@ package com.hsj.blogwaja.entity;
 
 import java.util.Date;
 
+/**
+ * @author waja
+ */
 public class BlogConfig {
     private String configName;
 

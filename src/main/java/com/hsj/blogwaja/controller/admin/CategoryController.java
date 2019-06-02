@@ -12,12 +12,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+
 /**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link http://13blog.site
+ * @author 黄仕杰
  */
+
 @Controller
 @RequestMapping("/admin")
 public class CategoryController {
@@ -37,7 +36,9 @@ public class CategoryController {
     @RequestMapping(value = "/categories/list", method = RequestMethod.GET)
     @ResponseBody
     public Result list(@RequestParam Map<String, Object> params) {
-        if (StringUtils.isEmpty(params.get("page")) || StringUtils.isEmpty(params.get("limit"))) {
+        String page = "page";
+        String limit = "limit";
+        if (StringUtils.isEmpty(params.get(page)) || StringUtils.isEmpty(params.get(limit))) {
             return ResultGenerator.genFailResult("参数异常！");
         }
         PageQueryUtil pageUtil = new PageQueryUtil(params);
@@ -47,10 +48,12 @@ public class CategoryController {
     /**
      * 分类添加
      */
-    @RequestMapping(value = "/categories/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/categories/save")
     @ResponseBody
     public Result save(@RequestParam("categoryName") String categoryName,
-                       @RequestParam("categoryIcon") String categoryIcon) {
+                       @RequestParam("categoryIcon") String categoryIcon,HttpServletRequest request) {
+        System.out.println(categoryIcon+"----"+categoryName);
+        System.out.println(request.getSession().getAttribute("loginUser"));
         if (StringUtils.isEmpty(categoryName) || StringUtils.isEmpty(categoryIcon)) {
             return ResultGenerator.genFailResult("参数异常！");
         }

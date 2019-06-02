@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * @author waja
+ */
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -40,6 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
             BlogCategory blogCategory = new BlogCategory();
             blogCategory.setCategoryName(categoryName);
             blogCategory.setCategoryIcon(categoryIcon);
+
             return blogCategoryMapper.insertSelective(blogCategory) > 0;
         }
         return false;

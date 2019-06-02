@@ -84,6 +84,7 @@ function tagAdd() {
     }
 }
 
+/*
 function deleteTag() {
     var ids = getSelectedRows();
     if (ids == null) {
@@ -119,3 +120,4 @@ function deleteTag() {
         }
     );
 }
+*/

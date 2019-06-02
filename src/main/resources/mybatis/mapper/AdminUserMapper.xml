@@ -12,7 +12,7 @@
     admin_user_id, login_user_name, login_password, nick_name, locked
   </sql>
 
-  <select id="login" resultMap="BaseResultMap">
+  <select id="login" resultMap="BaseResultMap" resultType="com.hsj.blogwaja.entity.AdminUser">
     select
     <include refid="Base_Column_List" />
     from tb_admin_user

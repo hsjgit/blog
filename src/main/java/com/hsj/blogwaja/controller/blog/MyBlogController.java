@@ -47,7 +47,7 @@ public class MyBlogController {
      */
     @GetMapping({"/", "/index", "index.html"})
     public String index(HttpServletRequest request) {
-        System.out.println(this.page(request, 1));
+       /* System.out.println(this.page(request, 1));*/
         return this.page(request, 1);
 
     }
@@ -208,7 +208,8 @@ public class MyBlogController {
             if (linkMap.containsKey((byte) 1)) {
                 request.setAttribute("recommendLinks", linkMap.get((byte) 1));
             }
-            if (linkMap.containsKey((byte) 2)) {
+            int s = 2;
+            if (linkMap.containsKey((byte) s)) {
                 request.setAttribute("personalLinks", linkMap.get((byte) 2));
             }
         }

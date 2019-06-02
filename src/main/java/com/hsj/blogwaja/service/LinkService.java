@@ -7,6 +7,9 @@ import com.hsj.blogwaja.util.PageResult;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author waja
+ */
 public interface LinkService {
     /**
      * 查询友链的分页数据

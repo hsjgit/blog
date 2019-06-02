@@ -2,6 +2,9 @@ package com.hsj.blogwaja.service;
 
 import java.util.Map;
 
+/**
+ * @author waja
+ */
 public interface ConfigService {
     /**
      * 修改配置项

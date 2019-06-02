@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+/**
+ * 登陆时密码查询和密码修改
+ * @author waja
+ */
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
 

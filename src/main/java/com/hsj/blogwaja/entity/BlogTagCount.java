@@ -1,5 +1,8 @@
 package com.hsj.blogwaja.entity;
 
+/**
+ * @author waja
+ */
 public class BlogTagCount {
     private Integer tagId;
 

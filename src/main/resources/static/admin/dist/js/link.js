@@ -146,7 +146,7 @@ function linkEdit() {
     $("#linkId").val(id);
 }
 
-function deleteLink() {
+/*function deleteLink() {
     var ids = getSelectedRows();
     if (ids == null) {
         return;
@@ -180,7 +180,7 @@ function deleteLink() {
             }
         }
     );
-}
+}*/
 
 function reset() {
     $("#linkName").val('');

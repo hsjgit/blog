@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * @author 黄仕杰
+ */
 @Component
 public interface BlogCategoryMapper {
     int deleteByPrimaryKey(Integer categoryId);

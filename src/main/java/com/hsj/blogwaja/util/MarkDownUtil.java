@@ -9,6 +9,9 @@ import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 
+/**
+ * @author waja
+ */
 public class MarkDownUtil {
     /**
      * 转换md格式为html

@@ -26,11 +26,10 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Random;
 
+
 /**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link http://13blog.site
+ * 博客管理对应页面的功能
+ * @author waja
  */
 @Controller
 @RequestMapping("/admin")
@@ -41,17 +40,28 @@ public class BlogController {
     @Resource
     private CategoryService categoryService;
 
+    /**
+     * 通过关键字查询文章，并将查询到的结果返回到前端
+     * @param params
+     * @return
+     */
     @GetMapping("/blogs/list")
     @ResponseBody
     public Result list(@RequestParam Map<String, Object> params) {
-        if (StringUtils.isEmpty(params.get("page")) || StringUtils.isEmpty(params.get("limit"))) {
+        String page = "page";
+        String limit = "limit";
+        if (StringUtils.isEmpty(params.get(page)) || StringUtils.isEmpty(params.get(limit))) {
             return ResultGenerator.genFailResult("参数异常！");
         }
         PageQueryUtil pageUtil = new PageQueryUtil(params);
         return ResultGenerator.genSuccessResult(blogService.getBlogsPage(pageUtil));
     }
 
-
+    /**
+     * 跳转到博客控制页面
+     * @param request
+     * @return
+     */
     @GetMapping("/blogs")
     public String list(HttpServletRequest request) {
         request.setAttribute("path", "blogs");
@@ -65,6 +75,12 @@ public class BlogController {
         return "admin/edit";
     }
 
+    /**
+     * 通过博客的id来查询博客
+     * @param request
+     * @param blogId
+     * @return
+     */
     @GetMapping("/blogs/edit/{blogId}")
     public String edit(HttpServletRequest request, @PathVariable("blogId") Long blogId) {
         request.setAttribute("path", "edit");
@@ -174,7 +190,8 @@ public class BlogController {
         blog.setBlogStatus(blogStatus);
         blog.setEnableComment(enableComment);
         String updateBlogResult = blogService.updateBlog(blog);
-        if ("success".equals(updateBlogResult)) {
+        String success = "success";
+        if (success.equals(updateBlogResult)) {
             return ResultGenerator.genSuccessResult("修改成功");
         } else {
             return ResultGenerator.genFailResult(updateBlogResult);

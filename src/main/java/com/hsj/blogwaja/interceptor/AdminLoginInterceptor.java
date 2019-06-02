@@ -9,19 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 后台系统身份验证拦截器
- *
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link http://13blog.site
+ * @author waja
  */
 @Component
 public class AdminLoginInterceptor implements HandlerInterceptor {
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         String uri = request.getRequestURI();
-        if (uri.startsWith("/admin") && null == request.getSession().getAttribute("loginUser")) {
+        if (!uri.startsWith("/admin") && null == request.getSession().getAttribute("loginUser")) {
             request.getSession().setAttribute("errorMsg", "请重新登陆");
             response.sendRedirect(request.getContextPath() + "/admin/login");
             return false;

@@ -4,6 +4,9 @@ import com.hsj.blogwaja.entity.BlogComment;
 import com.hsj.blogwaja.util.PageQueryUtil;
 import com.hsj.blogwaja.util.PageResult;
 
+/**
+ * @author waja
+ */
 public interface CommentService {
     /**
      * 添加评论

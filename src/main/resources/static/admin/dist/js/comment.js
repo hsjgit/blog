@@ -64,7 +64,7 @@ function reload() {
 /**
  * 批量审核
  */
-function checkDoneComments() {
+/*function checkDoneComments() {
     var ids = getSelectedRows();
     if (ids == null) {
         return;
@@ -98,12 +98,12 @@ function checkDoneComments() {
             }
         }
     );
-}
+}*/
 
 /**
  * 批量删除
  */
-function deleteComments() {
+/*function deleteComments() {
     var ids = getSelectedRows();
     if (ids == null) {
         return;
@@ -137,7 +137,7 @@ function deleteComments() {
             }
         }
     );
-}
+}*/
 
 
 function reply() {

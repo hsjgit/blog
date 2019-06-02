@@ -6,6 +6,9 @@ import com.hsj.blogwaja.util.PageResult;
 
 import java.util.List;
 
+/**
+ * @author waja
+ */
 public interface CategoryService {
 
     /**

@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link http://13blog.site
+ * 登陆和是密码的验证和修改密码
+ * @author waja
  */
 @Controller
 @RequestMapping("/admin")
@@ -70,8 +68,10 @@ public class AdminController {
             session.setAttribute("errorMsg", "用户名或密码不能为空");
             return "admin/login";
         }
+       /*这里有个验证码不对*/
         String kaptchaCode = session.getAttribute("verifyCode") + "";
-        if (StringUtils.isEmpty(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
+        if (StringUtils.isEmpty(kaptchaCode) || verifyCode.equals(kaptchaCode)) {
+
             session.setAttribute("errorMsg", "验证码错误");
             return "admin/login";
         }
@@ -79,8 +79,9 @@ public class AdminController {
         if (adminUser != null) {
             session.setAttribute("loginUser", adminUser.getNickName());
             session.setAttribute("loginUserId", adminUser.getAdminUserId());
-            //session过期时间设置为7200秒 即两小时
-            //session.setMaxInactiveInterval(60 * 60 * 2);
+            System.out.println(adminUser.getNickName()+"-------"+adminUser.getAdminUserId());
+            /*session过期时间设置为7200秒 即两小时
+            session.setMaxInactiveInterval(60 * 60 * 2);*/
             return "redirect:/admin/index";
         } else {
             session.setAttribute("errorMsg", "登陆失败");

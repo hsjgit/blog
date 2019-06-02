@@ -84,9 +84,10 @@ $('#saveButton').click(function () {
     } else {
         var params = $("#categoryForm").serialize();
         var url = '/admin/categories/save';
+        xhrFields:{withCredentials:true}
         var id = getSelectedRowWithoutAlert();
         if (id != null) {
-            url = '/admin/categories/update';
+            url = '/admin/categories/save';
         }
         $.ajax({
             type: 'POST',//方法类型
@@ -128,7 +129,8 @@ function categoryEdit() {
     $("#categoryId").val(id);
 }
 
-function deleteCagegory() {
+
+/*function deleteCagegory() {
     var ids = getSelectedRows();
     if (ids == null) {
         return;
@@ -162,7 +164,8 @@ function deleteCagegory() {
             }
         }
     );
-}
+}*/
+
 
 
 function reset() {
