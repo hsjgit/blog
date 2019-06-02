@@ -1,11 +1,14 @@
 package com.hsj.blogwaja.util;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author waja
  */
+@Data
 public class PageResult implements Serializable {
 
     //总记录数
@@ -33,46 +36,6 @@ public class PageResult implements Serializable {
         this.pageSize = pageSize;
         this.currPage = currPage;
         this.totalPage = (int) Math.ceil((double) totalCount / pageSize);
-    }
-
-    public int getTotalCount() {
-        return totalCount;
-    }
-
-    public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
-    }
-
-    public int getCurrPage() {
-        return currPage;
-    }
-
-    public void setCurrPage(int currPage) {
-        this.currPage = currPage;
-    }
-
-    public List<?> getList() {
-        return list;
-    }
-
-    public void setList(List<?> list) {
-        this.list = list;
     }
 
 }

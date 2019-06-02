@@ -16,10 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link http://13blog.site
+ * @author waja
  */
 @Controller
 public class MyBlogController {
@@ -93,6 +90,7 @@ public class MyBlogController {
      */
     @GetMapping({"/blog/{blogId}", "/article/{blogId}"})
     public String detail(HttpServletRequest request, @PathVariable("blogId") Long blogId, @RequestParam(value = "commentPage", required = false, defaultValue = "1") Integer commentPage) {
+        System.out.println(request.getRequestURI());
         BlogDetailVO blogDetailVO = blogService.getBlogDetail(blogId);
         if (blogDetailVO != null) {
             request.setAttribute("blogDetailVO", blogDetailVO);

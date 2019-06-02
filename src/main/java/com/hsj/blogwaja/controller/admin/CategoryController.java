@@ -2,6 +2,7 @@ package com.hsj.blogwaja.controller.admin;
 
 import com.hsj.blogwaja.service.CategoryService;
 import com.hsj.blogwaja.util.PageQueryUtil;
+import com.hsj.blogwaja.util.PageResult;
 import com.hsj.blogwaja.util.Result;
 import com.hsj.blogwaja.util.ResultGenerator;
 import org.springframework.stereotype.Controller;
@@ -42,7 +43,8 @@ public class CategoryController {
             return ResultGenerator.genFailResult("参数异常！");
         }
         PageQueryUtil pageUtil = new PageQueryUtil(params);
-        return ResultGenerator.genSuccessResult(categoryService.getBlogCategoryPage(pageUtil));
+        PageResult p = categoryService.getBlogCategoryPage(pageUtil);
+        return ResultGenerator.genSuccessResult(p);
     }
 
     /**
@@ -52,8 +54,6 @@ public class CategoryController {
     @ResponseBody
     public Result save(@RequestParam("categoryName") String categoryName,
                        @RequestParam("categoryIcon") String categoryIcon,HttpServletRequest request) {
-        System.out.println(categoryIcon+"----"+categoryName);
-        System.out.println(request.getSession().getAttribute("loginUser"));
         if (StringUtils.isEmpty(categoryName) || StringUtils.isEmpty(categoryIcon)) {
             return ResultGenerator.genFailResult("参数异常！");
         }

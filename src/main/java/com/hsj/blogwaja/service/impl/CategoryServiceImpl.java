@@ -9,7 +9,7 @@ import com.hsj.blogwaja.util.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,7 +43,10 @@ public class CategoryServiceImpl implements CategoryService {
             BlogCategory blogCategory = new BlogCategory();
             blogCategory.setCategoryName(categoryName);
             blogCategory.setCategoryIcon(categoryIcon);
-
+            //String time=TimeUtil.format(LocalDateTime.now());
+            blogCategory.setCreateTime(new Date());
+            Byte b = 0;
+            blogCategory.setIsDeleted(b);
             return blogCategoryMapper.insertSelective(blogCategory) > 0;
         }
         return false;

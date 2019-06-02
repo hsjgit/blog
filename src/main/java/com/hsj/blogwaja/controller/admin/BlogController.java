@@ -53,6 +53,10 @@ public class BlogController {
         if (StringUtils.isEmpty(params.get(page)) || StringUtils.isEmpty(params.get(limit))) {
             return ResultGenerator.genFailResult("参数异常！");
         }
+        for (Map.Entry<String, Object> stringObjectEntry : params.entrySet()) {
+            System.out.println(stringObjectEntry.getKey()+"-----"+stringObjectEntry.getValue());
+        }
+        ;
         PageQueryUtil pageUtil = new PageQueryUtil(params);
         return ResultGenerator.genSuccessResult(blogService.getBlogsPage(pageUtil));
     }
@@ -103,6 +107,8 @@ public class BlogController {
                        @RequestParam("blogCoverImage") String blogCoverImage,
                        @RequestParam("blogStatus") Byte blogStatus,
                        @RequestParam("enableComment") Byte enableComment) {
+        System.out.println(blogCategoryId+"--"+blogSubUrl+"---"+blogStatus+"----"+blogTags+"---"+blogTitle+"---"+
+        "----"+blogCoverImage+"---"+enableComment+"----"+blogContent);
         if (StringUtils.isEmpty(blogTitle)) {
             return ResultGenerator.genFailResult("请输入文章标题");
         }
@@ -136,8 +142,12 @@ public class BlogController {
         blog.setBlogCoverImage(blogCoverImage);
         blog.setBlogStatus(blogStatus);
         blog.setEnableComment(enableComment);
+        Byte b = 0;
+        blog.setIsDeleted(b);
+        blog.setCreateTime(new Date());
         String saveBlogResult = blogService.saveBlog(blog);
-        if ("success".equals(saveBlogResult)) {
+        String success = "success";
+        if (success.equals(saveBlogResult)) {
             return ResultGenerator.genSuccessResult("添加成功");
         } else {
             return ResultGenerator.genFailResult(saveBlogResult);
@@ -189,6 +199,7 @@ public class BlogController {
         blog.setBlogCoverImage(blogCoverImage);
         blog.setBlogStatus(blogStatus);
         blog.setEnableComment(enableComment);
+        blog.setUpdateTime(new Date());
         String updateBlogResult = blogService.updateBlog(blog);
         String success = "success";
         if (success.equals(updateBlogResult)) {

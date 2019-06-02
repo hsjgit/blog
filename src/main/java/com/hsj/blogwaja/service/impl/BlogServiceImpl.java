@@ -12,6 +12,7 @@ import com.hsj.blogwaja.util.MarkDownUtil;
 import com.hsj.blogwaja.util.PageQueryUtil;
 import com.hsj.blogwaja.util.PageResult;
 import com.hsj.blogwaja.util.PatternUtil;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,11 @@ public class BlogServiceImpl implements BlogService {
             //设置博客分类名称
             blog.setBlogCategoryName(blogCategory.getCategoryName());
             //分类的排序值加1
-            blogCategory.setCategoryRank(blogCategory.getCategoryRank() + 1);
+            Integer rank = blogCategory.getCategoryRank();
+            if (rank == null) {
+                rank = 0;
+            }
+            blogCategory.setCategoryRank(rank + 1);
         }
         //处理标签数据
         String[] tags = blog.getBlogTags().split(",");
@@ -59,14 +64,14 @@ public class BlogServiceImpl implements BlogService {
         }
         //保存文章
         if (blogMapper.insertSelective(blog) > 0) {
-            //新增的tag对象
+            /*新增的tag对象*/
             List<BlogTag> tagListForInsert = new ArrayList<>();
-            //所有的tag对象，用于建立关系数据
+          /*  所有的tag对象，用于建立关系数据*/
             List<BlogTag> allTagsList = new ArrayList<>();
             for (int i = 0; i < tags.length; i++) {
                 BlogTag tag = tagMapper.selectByTagName(tags[i]);
                 if (tag == null) {
-                    //不存在就新增
+                   /* 不存在就新增*/
                     BlogTag tempTag = new BlogTag();
                     tempTag.setTagName(tags[i]);
                     tagListForInsert.add(tempTag);
@@ -309,6 +314,9 @@ public class BlogServiceImpl implements BlogService {
     private BlogDetailVO getBlogDetailVO(Blog blog) {
         if (blog != null && blog.getBlogStatus() == 1) {
             //增加浏览量
+            if (blog.getBlogViews() == null) {
+                blog.setBlogViews(new Long(0));
+            }
             blog.setBlogViews(blog.getBlogViews() + 1);
             blogMapper.updateByPrimaryKey(blog);
             BlogDetailVO blogDetailVO = new BlogDetailVO();
