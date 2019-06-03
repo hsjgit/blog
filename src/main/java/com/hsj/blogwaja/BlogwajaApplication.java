@@ -11,7 +11,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  */
 @MapperScan("com.hsj.blogwaja.dao")
 @SpringBootApplication
-public class BlogwajaApplication extends SpringBootServletInitializer {
+public class BlogwajaApplication  extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(BlogwajaApplication.class);
