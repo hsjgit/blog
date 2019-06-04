@@ -44,7 +44,6 @@ public class MyBlogController {
      */
     @GetMapping({"/", "/index", "index.html"})
     public String index(HttpServletRequest request) {
-       /* System.out.println(this.page(request, 1));*/
         return this.page(request, 1);
 
     }
@@ -90,7 +89,6 @@ public class MyBlogController {
      */
     @GetMapping({"/blog/{blogId}", "/article/{blogId}"})
     public String detail(HttpServletRequest request, @PathVariable("blogId") Long blogId, @RequestParam(value = "commentPage", required = false, defaultValue = "1") Integer commentPage) {
-        System.out.println(request.getRequestURI());
         BlogDetailVO blogDetailVO = blogService.getBlogDetail(blogId);
         if (blogDetailVO != null) {
             request.setAttribute("blogDetailVO", blogDetailVO);

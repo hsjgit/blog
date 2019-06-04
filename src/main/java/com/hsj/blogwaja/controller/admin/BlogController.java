@@ -53,10 +53,6 @@ public class BlogController {
         if (StringUtils.isEmpty(params.get(page)) || StringUtils.isEmpty(params.get(limit))) {
             return ResultGenerator.genFailResult("参数异常！");
         }
-        for (Map.Entry<String, Object> stringObjectEntry : params.entrySet()) {
-            System.out.println(stringObjectEntry.getKey()+"-----"+stringObjectEntry.getValue());
-        }
-        ;
         PageQueryUtil pageUtil = new PageQueryUtil(params);
         return ResultGenerator.genSuccessResult(blogService.getBlogsPage(pageUtil));
     }

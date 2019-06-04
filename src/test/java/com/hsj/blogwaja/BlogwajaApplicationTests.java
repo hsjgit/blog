@@ -30,10 +30,11 @@ public class BlogwajaApplicationTests {
     private BlogServiceImpl blogService;
     @Test
     public void contextLoads() {
-        Long a = new Long(1);
-       BlogDetailVO b = blogService.getBlogDetail(a);
-        System.out.println(b.getBlogContent());
-        System.out.println(b.getBlogViews());
+        String s = "/dsds/dsd.dsa/dsd/waja";
+        String[] strings = s.split("\\/");
+        for (String string : strings) {
+            System.out.println(string);
+        }
     }
 
 }
