@@ -4,14 +4,12 @@ import com.hsj.blogwaja.config.Constants;
 import com.hsj.blogwaja.entity.Blog;
 import com.hsj.blogwaja.service.BlogService;
 import com.hsj.blogwaja.service.CategoryService;
-import com.hsj.blogwaja.util.MyBlogUtils;
-import com.hsj.blogwaja.util.PageQueryUtil;
-import com.hsj.blogwaja.util.Result;
-import com.hsj.blogwaja.util.ResultGenerator;
+import com.hsj.blogwaja.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import sun.security.provider.certpath.PKIXTimestampParameters;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +37,8 @@ public class BlogController {
     private BlogService blogService;
     @Resource
     private CategoryService categoryService;
+   /* @Resource
+    private SaveBlogToFile saveBlogToFile;*/
 
     /**
      * 通过关键字查询文章，并将查询到的结果返回到前端
@@ -139,6 +139,15 @@ public class BlogController {
         blog.setBlogStatus(blogStatus);
         blog.setEnableComment(enableComment);
         Byte b = 0;
+        /*String path="";
+        try {
+            path=saveBlogToFile.save(blog);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (path != null && !path.equals("")) {
+
+        }*/
         blog.setIsDeleted(b);
         blog.setCreateTime(new Date());
         String saveBlogResult = blogService.saveBlog(blog);

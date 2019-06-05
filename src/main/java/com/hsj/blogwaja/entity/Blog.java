@@ -8,6 +8,7 @@ import java.util.Date;
  * @author waja
  */
 public class Blog {
+    /*private String path;*/
     private Long blogId;
 
     private String blogTitle;
@@ -149,6 +150,13 @@ public class Blog {
         this.blogContent = blogContent == null ? null : blogContent.trim();
     }
 
+   /* public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
+    }*/
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -169,7 +177,9 @@ public class Blog {
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", blogContent=").append(blogContent);
-        sb.append("]");
+        /*sb.append(", path=").append(path);
+        sb.append("]");*/
         return sb.toString();
+
     }
 }

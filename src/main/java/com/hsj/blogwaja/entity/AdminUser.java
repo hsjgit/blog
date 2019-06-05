@@ -17,4 +17,5 @@ public class AdminUser {
     private String nickName;
 
     private Byte locked;
+
 }
