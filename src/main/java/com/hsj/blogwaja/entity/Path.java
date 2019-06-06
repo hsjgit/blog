@@ -18,6 +18,9 @@ public class Path {
         this.blogTitle = blog.getBlogTitle();
     }
 
+    public Path() {
+    }
+
     @Override
     public boolean equals(Object object) {
         Path path = (Path) object;

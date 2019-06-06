@@ -24,9 +24,13 @@ public class SaveBlogToFile {
             file.mkdir();
 
         }
+        Scanner in = new Scanner(blog.getBlogContent());
         String namath = PATH +"\\"+ blog.getBlogTitle()+".txt";
         PrintWriter writer = new PrintWriter(new FileOutputStream(namath), true);
-        writer.println(blog.getBlogContent());
+        while (in.hasNext()) {
+            writer.println(in.nextLine());
+        }
+
         writer.close();
         return namath;
     }
@@ -39,10 +43,14 @@ public class SaveBlogToFile {
      * @throws UnsupportedEncodingException 字节转换异常
      */
     public String getBlogContent(String path) throws FileNotFoundException, UnsupportedEncodingException {
-        Scanner in = new Scanner(new FileInputStream(path));
+        Scanner in = new Scanner(new FileInputStream(path),"UTF-8");
         StringBuilder stringBuilder = new StringBuilder();
         while (in.hasNext()) {
             stringBuilder.append(in.nextLine());
+            /**
+             * 换行
+             * */
+            stringBuilder.append("\r\n");
         }
         String charsetName = "UTF-8";
         return new String(stringBuilder.toString().getBytes(charsetName),charsetName);

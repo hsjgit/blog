@@ -4,6 +4,7 @@ import com.hsj.blogwaja.config.Constants;
 import com.hsj.blogwaja.entity.Blog;
 import com.hsj.blogwaja.service.BlogService;
 import com.hsj.blogwaja.service.CategoryService;
+import com.hsj.blogwaja.service.PathService;
 import com.hsj.blogwaja.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -37,9 +38,10 @@ public class BlogController {
     private BlogService blogService;
     @Resource
     private CategoryService categoryService;
-   /* @Resource
-    private SaveBlogToFile saveBlogToFile;*/
-
+    @Resource
+    private SaveBlogToFile saveBlogToFile;
+    @Resource
+    private PathService pathService;
     /**
      * 通过关键字查询文章，并将查询到的结果返回到前端
      * @param params
@@ -139,15 +141,12 @@ public class BlogController {
         blog.setBlogStatus(blogStatus);
         blog.setEnableComment(enableComment);
         Byte b = 0;
-        /*String path="";
         try {
-            path=saveBlogToFile.save(blog);
+           saveBlogToFile.save(blog);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (path != null && !path.equals("")) {
-
-        }*/
+        pathService.save(blog);
         blog.setIsDeleted(b);
         blog.setCreateTime(new Date());
         String saveBlogResult = blogService.saveBlog(blog);

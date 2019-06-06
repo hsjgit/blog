@@ -3,15 +3,9 @@ package com.hsj.blogwaja.service.impl;
 import com.hsj.blogwaja.controller.vo.BlogDetailVO;
 import com.hsj.blogwaja.controller.vo.BlogListVO;
 import com.hsj.blogwaja.dao.*;
-import com.hsj.blogwaja.entity.Blog;
-import com.hsj.blogwaja.entity.BlogCategory;
-import com.hsj.blogwaja.entity.BlogTag;
-import com.hsj.blogwaja.entity.BlogTagRelation;
+import com.hsj.blogwaja.entity.*;
 import com.hsj.blogwaja.service.BlogService;
-import com.hsj.blogwaja.util.MarkDownUtil;
-import com.hsj.blogwaja.util.PageQueryUtil;
-import com.hsj.blogwaja.util.PageResult;
-import com.hsj.blogwaja.util.PatternUtil;
+import com.hsj.blogwaja.util.*;
 import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,7 +36,10 @@ public class BlogServiceImpl implements BlogService {
     private BlogTagRelationMapper blogTagRelationMapper;
     @Autowired
     private BlogCommentMapper blogCommentMapper;
-
+    @Resource
+    private PathServiceImpl pathService;
+    @Resource
+    private SaveBlogToFile saveBlogToFile;
     @Override
     @Transactional
     public String saveBlog(Blog blog) {
@@ -224,6 +224,16 @@ public class BlogServiceImpl implements BlogService {
     public BlogDetailVO getBlogDetail(Long id) {
         Blog blog = blogMapper.selectByPrimaryKey(id);
         //不为空且状态为已发布
+        String content="";
+        Path path = pathService.select(blog);
+        try {
+            content= saveBlogToFile.getBlogContent(path.getBlogPath());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        blog.setBlogContent(content);
         BlogDetailVO blogDetailVO = getBlogDetailVO(blog);
         if (blogDetailVO != null) {
             return blogDetailVO;
@@ -298,6 +308,7 @@ public class BlogServiceImpl implements BlogService {
     public BlogDetailVO getBlogDetailBySubUrl(String subUrl) {
         Blog blog = blogMapper.selectBySubUrl(subUrl);
         //不为空且状态为已发布
+
         BlogDetailVO blogDetailVO = getBlogDetailVO(blog);
         if (blogDetailVO != null) {
             return blogDetailVO;

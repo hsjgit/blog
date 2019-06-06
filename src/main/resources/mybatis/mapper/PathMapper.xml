@@ -5,7 +5,7 @@
         INSERT INTO tb_path (blogName,blogTitle,blogPath) VALUE (#{blogName},#{blogTitle},#{blogPath})
     </insert>
     <select id="select" resultType="com.hsj.blogwaja.entity.Path">
-        select * from tb_path where blogName=#{blogName} and blogTitle=#{blogTitle}
+        select * from tb_path where  blogTitle=#{blogTitle}
     </select>
 
 </mapper>

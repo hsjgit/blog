@@ -16,9 +16,8 @@ public interface PathService {
 
     /**
      * 查询单条数据
-     * @param blogTitle 标题
-     * @param blogName blog_id
+     * @param blog 封装了blog的标题，内容，等信息
      * @return
      */
-    Path select(String blogTitle, String blogName);
+    Path select(Blog blog);
 }

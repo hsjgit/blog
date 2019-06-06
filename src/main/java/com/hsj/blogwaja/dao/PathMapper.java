@@ -23,5 +23,5 @@ public interface PathMapper {
      * @param blogTitle blog的title
      * @return 查询结果集
      */
-    Path select(@Param("blogName") String blogName, @Param("blogTitle") String blogTitle);
+    Path select( @Param("blogTitle") String blogTitle);
 }

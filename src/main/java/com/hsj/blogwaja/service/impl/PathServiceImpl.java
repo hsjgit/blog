@@ -8,7 +8,6 @@ import com.hsj.blogwaja.util.SaveBlogToFile;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import javax.websocket.server.PathParam;
 import java.io.IOException;
 
 /**
@@ -33,5 +32,20 @@ public class PathServiceImpl implements PathService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 查询单条数据
+     * @param blog 封装了blog的标题，内容，等信息
+     * @return
+     */
+    @Override
+    public Path select(Blog blog) {
+        Path path = pathMapper.select( blog.getBlogTitle());
+        if (path == null) {
+            path = new Path();
+            path.setBlogPath("500");
+        }
+        return path;
     }
 }
